@@ -2392,6 +2392,12 @@
       "name": "playerName",
       "type": "string",
       "value": ""
+    },
+    {
+      "folded": true,
+      "name": "attempts",
+      "type": "number",
+      "value": 0
     }
   ],
   "layouts": [
@@ -2677,6 +2683,16 @@
                 "playerName",
                 "=",
                 "NameInput.Text()"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "attempts",
+                "=",
+                "5"
               ]
             },
             {
@@ -3141,9 +3157,46 @@
                     "=",
                     "\"[b]What a pity, you got it wrong!!![/b]\""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "attempts",
+                    "-",
+                    "1"
+                  ]
                 }
               ],
               "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "NumberVariable"
+                      },
+                      "parameters": [
+                        "attempts",
+                        "=",
+                        "0"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Scene"
+                      },
+                      "parameters": [
+                        "",
+                        "\"GameOver\"",
+                        ""
+                      ]
+                    }
+                  ]
+                },
                 {
                   "type": "BuiltinCommonInstructions::Standard",
                   "conditions": [
