@@ -2392,6 +2392,12 @@
       "name": "playerName",
       "type": "string",
       "value": ""
+    },
+    {
+      "folded": true,
+      "name": "attempts",
+      "type": "number",
+      "value": 0
     }
   ],
   "layouts": [
@@ -2520,6 +2526,22 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "ZumbieText",
+          "persistentUuid": "e964c8af-78f5-4a5c-93d8-eefa1dc1d109",
+          "width": 0,
+          "x": 253,
+          "y": 230,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -2610,6 +2632,24 @@
           "variables": [],
           "effects": [],
           "behaviors": []
+        },
+        {
+          "assetStoreId": "",
+          "name": "ZumbieText",
+          "type": "BBText::BBText",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "content": {
+            "text": "[outline=black]Uuurgh...[/outline]",
+            "opacity": 255,
+            "fontSize": 40,
+            "visible": true,
+            "color": "255;255;255",
+            "fontFamily": "Arial",
+            "align": "left",
+            "wordWrap": true
+          }
         }
       ],
       "objectsFolderStructure": {
@@ -2620,6 +2660,9 @@
           },
           {
             "objectName": "NumberText"
+          },
+          {
+            "objectName": "ZumbieText"
           },
           {
             "objectName": "NameInput"
@@ -2677,6 +2720,16 @@
                 "playerName",
                 "=",
                 "NameInput.Text()"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "attempts",
+                "=",
+                "5"
               ]
             },
             {
@@ -3013,7 +3066,7 @@
               "parameters": [
                 "ZombieText",
                 "=",
-                "\"[b]Hello \" + GlobalVariableString(playerName)+\", I'm thinking of a number between 1 and 100. How about trying to guess?[/b]\""
+                "\"[b]Hello \" + GlobalVariableString(playerName)+\", Try beat me guessing a number between 1 and 100. How about trying to guess?[/b]\""
               ]
             }
           ]
@@ -3096,6 +3149,24 @@
                     "=",
                     "\"[b]Congratulations, you got it right!!![/b]\""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "3"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene"
+                  },
+                  "parameters": [
+                    "",
+                    "\"GameOver\"",
+                    ""
+                  ]
                 }
               ]
             },
@@ -3122,6 +3193,99 @@
                     "ZombieText",
                     "=",
                     "\"[b]What a pity, you got it wrong!!![/b]\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "attempts",
+                    "-",
+                    "1"
+                  ]
+                }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "NumberVariable"
+                      },
+                      "parameters": [
+                        "attempts",
+                        "=",
+                        "0"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Scene"
+                      },
+                      "parameters": [
+                        "",
+                        "\"GameOver\"",
+                        ""
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "NumberVariable"
+                      },
+                      "parameters": [
+                        "numberUser",
+                        "<",
+                        "number"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "BBText::SetBBText"
+                      },
+                      "parameters": [
+                        "ZombieText",
+                        "=",
+                        "\"[b]What a pity,the number I was thinking of is greater than \"+ToString(numberUser)+\"[/b]\""
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "NumberVariable"
+                      },
+                      "parameters": [
+                        "numberUser",
+                        ">",
+                        "number"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "BBText::SetBBText"
+                      },
+                      "parameters": [
+                        "ZombieText",
+                        "=",
+                        "\"[b]What a pity, the number I was thinking of is less than \"+ToString(numberUser)+\"[/b]\" "
+                      ]
+                    }
                   ]
                 }
               ]
@@ -3216,15 +3380,303 @@
       "stopSoundsOnStartup": true,
       "title": "",
       "v": 209,
-      "uiSettings": {},
+      "uiSettings": {
+        "grid": false,
+        "gridType": "rectangular",
+        "gridWidth": 32,
+        "gridHeight": 32,
+        "gridOffsetX": 0,
+        "gridOffsetY": 0,
+        "gridColor": 10401023,
+        "gridAlpha": 0.8,
+        "snap": false,
+        "zoomFactor": 0.875,
+        "windowMask": false
+      },
       "objectsGroups": [],
       "variables": [],
-      "instances": [],
-      "objects": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 174,
+          "keepRatio": true,
+          "layer": "",
+          "name": "GameOverTitle",
+          "persistentUuid": "8824944f-3f2a-42dc-b9bb-fb558a57ab48",
+          "width": 445,
+          "x": 188,
+          "y": 61,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 0,
+          "height": 600,
+          "keepRatio": true,
+          "layer": "",
+          "name": "PurpleBackground",
+          "persistentUuid": "88b596b0-7488-49b1-bcca-5696454b2872",
+          "width": 800,
+          "x": 1,
+          "y": 0,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 182,
+          "keepRatio": true,
+          "layer": "",
+          "name": "GameOverText",
+          "persistentUuid": "fabe7948-49c0-4136-bd2d-ec757154c4f9",
+          "width": 456,
+          "x": 195,
+          "y": 233,
+          "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "ZombieGirl",
+          "persistentUuid": "9bcdc008-ec0b-42ae-954d-eae36a6cd548",
+          "width": 0,
+          "x": 336,
+          "y": 404,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "objects": [
+        {
+          "assetStoreId": "",
+          "name": "GameOverTitle",
+          "type": "BBText::BBText",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "content": {
+            "text": "[outline=black][b]GAME OVER[/b][/outline]",
+            "opacity": 255,
+            "fontSize": 70,
+            "visible": true,
+            "color": "255;255;255",
+            "fontFamily": "Arial",
+            "align": "left",
+            "wordWrap": true
+          }
+        },
+        {
+          "assetStoreId": "653519df871cb169057a6348a2ee25ced783ccbf0e9925de08cb28460c37d2b5",
+          "height": 480,
+          "name": "PurpleBackground",
+          "texture": "tiled_Purple background.png",
+          "type": "TiledSpriteObject::TiledSprite",
+          "width": 640,
+          "variables": [],
+          "effects": [],
+          "behaviors": []
+        },
+        {
+          "assetStoreId": "",
+          "name": "GameOverText",
+          "type": "BBText::BBText",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "content": {
+            "text": "[outline=black][b]What a pity, you lost!!! Don't be sad. Try again and improve your deduction.[/b][/outline]",
+            "opacity": 255,
+            "fontSize": 30,
+            "visible": true,
+            "color": "255;255;255",
+            "fontFamily": "Arial",
+            "align": "left",
+            "wordWrap": true
+          }
+        }
+      ],
       "objectsFolderStructure": {
-        "folderName": "__ROOT"
+        "folderName": "__ROOT",
+        "children": [
+          {
+            "objectName": "GameOverTitle"
+          },
+          {
+            "objectName": "GameOverText"
+          },
+          {
+            "objectName": "PurpleBackground"
+          }
+        ]
       },
-      "events": [],
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Player Won"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "attempts",
+                ">",
+                "0"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "BBText::SetBBText"
+              },
+              "parameters": [
+                "GameOverTitle",
+                "=",
+                "\"You Won\""
+              ]
+            },
+            {
+              "type": {
+                "value": "BBText::SetBBText"
+              },
+              "parameters": [
+                "GameOverText",
+                "=",
+                "\"[outline=black][b]You are amazing!!! You beat me.[/outline=black][/b]\""
+              ]
+            },
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+              },
+              "parameters": [
+                "ZombieGirl",
+                "Animation",
+                "=",
+                "\"Dead\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Player Lost"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "attempts",
+                "<=",
+                "0"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "BBText::SetBBText"
+              },
+              "parameters": [
+                "GameOverTitle",
+                "=",
+                "\"[outline=black][b]GAME OVER[/b][/outline]\""
+              ]
+            },
+            {
+              "type": {
+                "value": "BBText::SetBBText"
+              },
+              "parameters": [
+                "GameOverText",
+                "=",
+                "\"[outline=black][b]What a pity, you lost! Uuurgh, give me your braaain...[outline=black][/b]\""
+              ]
+            },
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+              },
+              "parameters": [
+                "ZombieGirl",
+                "Animation",
+                "=",
+                "\"Attack\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                "5"
+              ]
+            }
+          ]
+        }
+      ],
       "layers": [
         {
           "ambientLightColorB": 200,
