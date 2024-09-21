@@ -3343,13 +3343,152 @@
       "stopSoundsOnStartup": true,
       "title": "",
       "v": 209,
-      "uiSettings": {},
+      "uiSettings": {
+        "grid": false,
+        "gridType": "rectangular",
+        "gridWidth": 32,
+        "gridHeight": 32,
+        "gridOffsetX": 0,
+        "gridOffsetY": 0,
+        "gridColor": 10401023,
+        "gridAlpha": 0.8,
+        "snap": false,
+        "zoomFactor": 0.875,
+        "windowMask": false
+      },
       "objectsGroups": [],
       "variables": [],
-      "instances": [],
-      "objects": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 174,
+          "keepRatio": true,
+          "layer": "",
+          "name": "GameOverTitle",
+          "persistentUuid": "8824944f-3f2a-42dc-b9bb-fb558a57ab48",
+          "width": 445,
+          "x": 188,
+          "y": 61,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 0,
+          "height": 600,
+          "keepRatio": true,
+          "layer": "",
+          "name": "PurpleBackground",
+          "persistentUuid": "88b596b0-7488-49b1-bcca-5696454b2872",
+          "width": 800,
+          "x": 1,
+          "y": 0,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 182,
+          "keepRatio": true,
+          "layer": "",
+          "name": "GameOverText",
+          "persistentUuid": "fabe7948-49c0-4136-bd2d-ec757154c4f9",
+          "width": 456,
+          "x": 195,
+          "y": 233,
+          "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "ZombieGirl",
+          "persistentUuid": "9bcdc008-ec0b-42ae-954d-eae36a6cd548",
+          "width": 0,
+          "x": 336,
+          "y": 404,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "objects": [
+        {
+          "assetStoreId": "",
+          "name": "GameOverTitle",
+          "type": "BBText::BBText",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "content": {
+            "text": "[outline=black][b]GAME OVER[/b][/outline]",
+            "opacity": 255,
+            "fontSize": 70,
+            "visible": true,
+            "color": "255;255;255",
+            "fontFamily": "Arial",
+            "align": "left",
+            "wordWrap": true
+          }
+        },
+        {
+          "assetStoreId": "653519df871cb169057a6348a2ee25ced783ccbf0e9925de08cb28460c37d2b5",
+          "height": 480,
+          "name": "PurpleBackground",
+          "texture": "tiled_Purple background.png",
+          "type": "TiledSpriteObject::TiledSprite",
+          "width": 640,
+          "variables": [],
+          "effects": [],
+          "behaviors": []
+        },
+        {
+          "assetStoreId": "",
+          "name": "GameOverText",
+          "type": "BBText::BBText",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "content": {
+            "text": "[outline=black][b]What a pity, you lost!!! Don't be sad. Try again and improve your deduction.[/b][/outline]",
+            "opacity": 255,
+            "fontSize": 30,
+            "visible": true,
+            "color": "255;255;255",
+            "fontFamily": "Arial",
+            "align": "left",
+            "wordWrap": true
+          }
+        }
+      ],
       "objectsFolderStructure": {
-        "folderName": "__ROOT"
+        "folderName": "__ROOT",
+        "children": [
+          {
+            "objectName": "GameOverTitle"
+          },
+          {
+            "objectName": "GameOverText"
+          },
+          {
+            "objectName": "PurpleBackground"
+          }
+        ]
       },
       "events": [],
       "layers": [
