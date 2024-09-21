@@ -3096,6 +3096,24 @@
                     "=",
                     "\"[b]Congratulations, you got it right!!![/b]\""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "3"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene"
+                  },
+                  "parameters": [
+                    "",
+                    "\"GameOver\"",
+                    ""
+                  ]
                 }
               ]
             },
@@ -3122,6 +3140,62 @@
                     "ZombieText",
                     "=",
                     "\"[b]What a pity, you got it wrong!!![/b]\""
+                  ]
+                }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "NumberVariable"
+                      },
+                      "parameters": [
+                        "numberUser",
+                        "<",
+                        "number"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "BBText::SetBBText"
+                      },
+                      "parameters": [
+                        "ZombieText",
+                        "=",
+                        "\"[b]What a pity,the number I was thinking of is greater than \"+ToString(numberUser)+\"[/b]\""
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "NumberVariable"
+                      },
+                      "parameters": [
+                        "numberUser",
+                        ">",
+                        "number"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "BBText::SetBBText"
+                      },
+                      "parameters": [
+                        "ZombieText",
+                        "=",
+                        "\"[b]What a pity, the number I was thinking of is less than \"+ToString(numberUser)+\"[/b]\" "
+                      ]
+                    }
                   ]
                 }
               ]
